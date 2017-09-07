@@ -1,0 +1,367 @@
+[
+  {
+    "resort": "beskyd",
+    "cams": [
+      {
+        "id": "41",
+        "title": "Lower station"
+      }
+    ]
+  },
+  {
+    "resort": "bukovel",
+    "cams": [
+      {
+        "id": "7",
+        "title": "Top on the 2-chair lift"
+      },
+      {
+        "id": "72",
+        "title": "View of the mountain Bukovel"
+      },
+      {
+        "id": "73",
+        "title": "Top on the 14, 15-chair lift"
+      },
+      {
+        "id": "74",
+        "title": "Track 2 A"
+      },
+      {
+        "id": "75",
+        "title": "Panoramic camera #2. Top of 11th lift"
+      },
+      {
+        "id": "76",
+        "title": "Resort center"
+      },
+      {
+        "id": "77",
+        "title": "Sports grounds"
+      },
+      {
+        "id": "78",
+        "title": "Track 1C"
+      },
+      {
+        "id": "79",
+        "title": "Living residence #2"
+      },
+      {
+        "id": "80",
+        "title": "Living residence #1"
+      },
+      {
+        "id": "81",
+        "title": "Living residence #1"
+      },
+      {
+        "id": "82",
+        "title": "Â«Lake of youthÂ»"
+      },
+      {
+        "id": "83",
+        "title": "Small lake"
+      },
+      {
+        "id": "84",
+        "title": "Cafe Â«Bugi.LÂ»"
+      },
+      {
+        "id": "85",
+        "title": "Restaurant Â«KaiserÂ»"
+      },
+      {
+        "id": "86",
+        "title": "Panoramic camera #1"
+      },
+      {
+        "id": "87",
+        "title": "Kids playground"
+      },
+      {
+        "id": "88",
+        "title": "Panaramic camera #3. Top station of lift #12"
+      }
+    ]
+  },
+  {
+    "resort": "bukovica",
+    "cams": [
+      {
+        "id": "28",
+        "title": "View track lift Â«DoppelmayrÂ»"
+      },
+      {
+        "id": "29",
+        "title": "View track lift Â«TatraponaÂ»"
+      }
+    ]
+  },
+  {
+    "resort": "drahobrat",
+    "cams": [
+      {
+        "id": "1",
+        "title": "SR Â«DrahobratÂ»"
+      },
+      {
+        "id": "5",
+        "title": "Hotel Â«Snow QueenÂ» "
+      },
+      {
+        "id": "8",
+        "title": "Ð¡hair lift Â«Vershina KarpatÂ» "
+      },
+      {
+        "id": "10",
+        "title": "Hotel Â«Yaremina hataÂ» "
+      },
+      {
+        "id": "14",
+        "title": "STC Â«OazaÂ» "
+      },
+      {
+        "id": "32",
+        "title": "Ð¡hair lift Â«Carpathian seagullÂ»"
+      },
+      {
+        "id": "36",
+        "title": "Ð¡hair lift Â«Carpathian seagullÂ»,  landing"
+      },
+      {
+        "id": "37",
+        "title": "Ð¡hair lift Â«Carpathian seagullÂ», 10 pillar"
+      },
+      {
+        "id": "39",
+        "title": "Hotel Â«SkelyaÂ»"
+      },
+      {
+        "id": "44",
+        "title": "Lift on the Gendarme"
+      }
+    ]
+  },
+  {
+    "resort": "izki",
+    "cams": [
+      {
+        "id": "17",
+        "title": "Panorama"
+      },
+      {
+        "id": "42",
+        "title": "View of the slope"
+      }
+    ]
+  },
+  {
+    "resort": "kharkiv",
+    "cams": [
+      {
+        "id": "26",
+        "title": "Lower station"
+      },
+      {
+        "id": "27",
+        "title": "The top station"
+      }
+    ]
+  },
+  {
+    "resort": "krasiya",
+    "cams": [
+      {
+        "id": "11",
+        "title": "Lower station"
+      },
+      {
+        "id": "12",
+        "title": "The top station"
+      },
+      {
+        "id": "15",
+        "title": "Transfer"
+      },
+      {
+        "id": "43",
+        "title": "Hotel Alpen House"
+      },
+      {
+        "id": "47",
+        "title": "Lower station - rollout"
+      },
+      {
+        "id": "48",
+        "title": "Transfer-Doppelmayr"
+      },
+      {
+        "id": "51",
+        "title": "T-BAR station"
+      }
+    ]
+  },
+  {
+    "resort": "kyiv",
+    "cams": [
+      {
+        "id": "6",
+        "title": "Protasov Yar"
+      }
+    ]
+  },
+  {
+    "resort": "magura",
+    "cams": [
+      {
+        "id": "18",
+        "title": "Loop-line #1"
+      },
+      {
+        "id": "34",
+        "title": "Â«MaguraÂ» Hotel"
+      }
+    ]
+  },
+  {
+    "resort": "plai",
+    "cams": [
+      {
+        "id": "19",
+        "title": "Lower station"
+      },
+      {
+        "id": "20",
+        "title": "Lower station 2"
+      },
+      {
+        "id": "21",
+        "title": "The top station"
+      }
+    ]
+  },
+  {
+    "resort": "podobovets",
+    "cams": [
+      {
+        "id": "3",
+        "title": "T-BAR station #1"
+      },
+      {
+        "id": "33",
+        "title": "T-BAR station #2"
+      }
+    ]
+  },
+  {
+    "resort": "poltava",
+    "cams": [
+      {
+        "id": "30",
+        "title": "Sorochyn Yar"
+      }
+    ]
+  },
+  {
+    "resort": "polyana",
+    "cams": [
+      {
+        "id": "31",
+        "title": "Lower station"
+      }
+    ]
+  },
+  {
+    "resort": "pylypets",
+    "cams": [
+      {
+        "id": "2",
+        "title": "1-chair lift station"
+      },
+      {
+        "id": "49",
+        "title": "Upper chairlift station"
+      },
+      {
+        "id": "50",
+        "title": "A view of the multilift"
+      }
+    ]
+  },
+  {
+    "resort": "slavsko",
+    "cams": [
+      {
+        "id": "4",
+        "title": "Trostian, hotel Â«The Three Little PigsÂ» "
+      }
+    ]
+  },
+  {
+    "resort": "ternopil",
+    "cams": [
+      {
+        "id": "25",
+        "title": " Savich park"
+      },
+      {
+        "id": "45",
+        "title": "Savich park - rent"
+      },
+      {
+        "id": "46",
+        "title": "Savich park - simple slope"
+      }
+    ]
+  },
+  {
+    "resort": "vodyaniki",
+    "cams": [
+      {
+        "id": "24",
+        "title": "The top station"
+      }
+    ]
+  },
+  {
+    "resort": "vyshgora",
+    "cams": [
+      {
+        "id": "53",
+        "title": "View of the slope"
+      }
+    ]
+  },
+  {
+    "resort": "yasinya",
+    "cams": [
+      {
+        "id": "38",
+        "title": "View Petros and Goverla"
+      }
+    ]
+  },
+  {
+    "resort": "zahar_berkut",
+    "cams": [
+      {
+        "id": "16",
+        "title": "Boarding of the first lift"
+      },
+      {
+        "id": "23",
+        "title": "18 pillar"
+      }
+    ]
+  },
+  {
+    "resort": "zhdenievo",
+    "cams": [
+      {
+        "id": "9",
+        "title": "Lower station"
+      }
+    ]
+  }
+]
