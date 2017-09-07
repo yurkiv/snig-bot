@@ -1,6 +1,7 @@
 require 'telegram/bot'
 require 'pry'
 require 'rb-readline'
+require 'open-uri'
 
 token = ENV['TELEGRAM_API_TOKEN']
 resorts = JSON.parse(File.read('resorts.json'), symbolize_names: true)
@@ -18,7 +19,7 @@ Telegram::Bot::Client.run(token) do |bot|
     if resort
       resort[:cams].each do |cam|
         bot.api.sendMessage(chat_id: message.chat.id, text: cam[:title])
-        bot.api.send_photo(chat_id: message.chat.id, photo: "https://img.snig.info/#{cam[:id]}/last.jpg")
+        bot.api.send_photo(chat_id: message.chat.id, photo: Faraday::UploadIO.new(open("https://img.snig.info/#{cam[:id]}/last.jpg"), 'image/jpeg'))
       end
     end
   end
