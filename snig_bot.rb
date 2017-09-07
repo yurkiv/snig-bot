@@ -1,14 +1,12 @@
 require 'telegram/bot'
-require 'pry'
-require 'rb-readline'
 require 'open-uri'
 
 token = ENV['TELEGRAM_API_TOKEN']
-resorts = JSON.parse(File.read('resorts.json'), symbolize_names: true)
-
-resorts_list = resorts.map { |resort| resort[:resort].prepend('/') }.join("\n")
 
 Telegram::Bot::Client.run(token) do |bot|
+  resorts = JSON.parse(File.read('resorts.json'), symbolize_names: true)
+  resorts_list = resorts.map { |resort| resort[:resort].prepend('/') }.join("\n")
+
   bot.listen do |message|
     case message.text
     when '/start', '/list'
@@ -18,9 +16,12 @@ Telegram::Bot::Client.run(token) do |bot|
     resort = resorts.find { |r| r[:resort] == message.text }
     if resort
       resort[:cams].each do |cam|
-        bot.api.sendMessage(chat_id: message.chat.id, text: cam[:title])
-        bot.api.send_photo(chat_id: message.chat.id, photo: Faraday::UploadIO.new(open("https://img.snig.info/#{cam[:id]}/last.jpg"), 'image/jpeg'))
+        photo = Faraday::UploadIO.new(open("https://img.snig.info/#{cam[:id]}/last.jpg"), 'image/jpeg')
+        text = "#{cam[:title]}: https://snig.info/#{cam[:id]}"
+
+        bot.api.send_photo(chat_id: message.chat.id, photo: photo, caption: text)
       end
+      bot.api.sendMessage(chat_id: message.chat.id, text: '/list')
     end
   end
 end
