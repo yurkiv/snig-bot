@@ -1,0 +1,1 @@
+bot: ruby snig_bot.rb
