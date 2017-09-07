@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
-gem 'rack'
+
+ruby '2.3.0'
+
 gem 'telegram-bot-ruby'
 gem 'pry'
-gem 'rb-readline'
