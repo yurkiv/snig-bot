@@ -1,6 +1,8 @@
 require 'telegram/bot'
 require 'open-uri'
+require 'dotenv'
 
+Dotenv.load
 token = ENV['TELEGRAM_API_TOKEN']
 
 Telegram::Bot::Client.run(token) do |bot|
