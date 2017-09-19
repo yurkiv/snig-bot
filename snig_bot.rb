@@ -2,6 +2,7 @@ require 'telegram/bot'
 require 'open-uri'
 require 'dotenv'
 
+Dir.chdir(File.dirname(__FILE__))
 Dotenv.load
 token = ENV['TELEGRAM_API_TOKEN']
 
