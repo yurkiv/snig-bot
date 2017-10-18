@@ -25,10 +25,12 @@ Telegram::Bot::Client.run(token, logger: Logger.new('bot.log', 7, 1_024_000)) do
 
       resort = resorts.find { |r| r[:resort] == message.text }
       if resort
-        resort[:cams].each do |cam|
+        active_cams = resort[:cams].select { |cam| cam[:status] == 'online' }
+        bot.api.sendMessage(chat_id: message.chat.id, text: 'There are no active cams :(') if active_cams.empty?
+
+        active_cams.each do |cam|
           photo = Faraday::UploadIO.new(open("https://img.snig.info/#{cam[:id]}/last.jpg"), 'image/jpeg')
           text = "#{cam[:title]}: https://snig.info/#{cam[:id]}"
-
           bot.api.send_photo(chat_id: message.chat.id, photo: photo, caption: text)
         end
         bot.api.sendMessage(chat_id: message.chat.id, text: '/list')
