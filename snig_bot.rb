@@ -2,10 +2,12 @@ require 'telegram/bot'
 require 'open-uri'
 require 'dotenv'
 require 'api_cache'
+require 'sentry-raven'
 
 Dir.chdir(File.dirname(__FILE__))
 Dotenv.load
 token = ENV['TELEGRAM_API_TOKEN']
+Raven.configure { |config| config.dsn = ENV['SENTRY_URL'] }
 
 Telegram::Bot::Client.run(token, logger: Logger.new('bot.log', 7, 1_024_000)) do |bot|
   bot.logger.info('Bot has been started')
@@ -36,7 +38,8 @@ Telegram::Bot::Client.run(token, logger: Logger.new('bot.log', 7, 1_024_000)) do
         bot.api.sendMessage(chat_id: message.chat.id, text: '/list')
       end
     end
-  rescue Telegram::Bot::Exceptions::ResponseError => e
+  rescue StandardError => e
+    Raven.capture_exception(e)
     bot.logger.error e
     bot.logger.error e.backtrace
     retry

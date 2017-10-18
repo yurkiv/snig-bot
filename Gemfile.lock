@@ -23,6 +23,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    sentry-raven (2.7.1)
+      faraday (>= 0.7.6, < 1.0)
     slop (3.6.0)
     telegram-bot-ruby (0.8.3)
       faraday
@@ -42,6 +44,7 @@ DEPENDENCIES
   daemons
   dotenv
   pry
+  sentry-raven
   telegram-bot-ruby
 
 BUNDLED WITH
