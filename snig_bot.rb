@@ -11,6 +11,8 @@ Dotenv.load
 token = ENV['TELEGRAM_API_TOKEN']
 Raven.configure { |config| config.dsn = ENV['SENTRY_URL'] }
 
+buk_query_cams = %w(lift1R lift2 lift2R lift3 lift5_1 lift7 lift8 lift11 lift12 lift13 lift14 lift15 lift16 lift17 lift22)
+
 Telegram::Bot::Client.run(token, logger: Logger.new('bot.log', 7, 1_024_000)) do |bot|
   bot.logger.info('Bot has been started')
   begin
@@ -21,11 +23,18 @@ Telegram::Bot::Client.run(token, logger: Logger.new('bot.log', 7, 1_024_000)) do
       response = APICache.get('https://snig.info/api/snigbot/telegram.json', cache: 600)
       resorts = JSON.parse(response, symbolize_names: true)
       resorts.each {|resort| resort[:resort] = resort[:resort].tr(' ', '_')}
-      resorts_list = resorts.map { |resort| resort[:resort].prepend('/') }.join("\n")
+      resorts_list = resorts.map { |resort| resort[:resort].prepend('/') }
+      resorts_list = resorts_list.insert(2, '/bukovel_queue_control').join("\n")
 
       case message.text
       when '/start', '/list'
         bot.api.sendMessage(chat_id: message.chat.id, text: resorts_list)
+      when '/bukovel_queue_control'
+        buk_query_cams.each do |cam|
+          photo = Faraday::UploadIO.new(open("https://yeti.bukovel.com/delays/#{cam}.jpg"), 'image/jpeg')
+          bot.api.send_photo(chat_id: message.chat.id, photo: photo, caption: "Bukovel #{cam}")
+        end
+        bot.api.sendMessage(chat_id: message.chat.id, text: '/list')
       end
 
       resort = resorts.find { |r| r[:resort] == message.text }
