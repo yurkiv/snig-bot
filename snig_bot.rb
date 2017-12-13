@@ -3,6 +3,8 @@ require 'open-uri'
 require 'dotenv'
 require 'api_cache'
 require 'sentry-raven'
+require 'pry'
+require_relative 'stat'
 
 Dir.chdir(File.dirname(__FILE__))
 Dotenv.load
@@ -14,6 +16,7 @@ Telegram::Bot::Client.run(token, logger: Logger.new('bot.log', 7, 1_024_000)) do
   begin
     bot.listen do |message|
       bot.logger.info message
+      Stat.send(message.text, "#{message.from.id}-#{message.from.username}")
 
       response = APICache.get('https://snig.info/api/snigbot/telegram.json', cache: 600)
       resorts = JSON.parse(response, symbolize_names: true)
