@@ -7,6 +7,7 @@ require 'open-uri'
 
 require './lib/message_responder'
 require './lib/app_configurator'
+require './lib/metrics'
 
 token = AppConfigurator.token
 logger = AppConfigurator.logger
@@ -19,13 +20,14 @@ begin
     bot.listen do |message|
       options = { bot: bot, message: message }
 
-      logger.debug "@#{message.from.username}: #{message.text}"
+      logger.info message
+      Metrics.send(message)
       MessageResponder.new(options).respond
     end
   end
 rescue StandardError => e
   Raven.capture_exception(e)
-  bot.logger.error e
+  logger.error e
   logger.error e.backtrace
   retry
 end

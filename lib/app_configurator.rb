@@ -1,5 +1,6 @@
 require 'logger'
 require 'sentry-raven'
+require 'open-uri'
 
 # Class for application configuration
 class AppConfigurator
@@ -13,8 +14,12 @@ class AppConfigurator
       Raven.configure { |config| config.dsn = sentry_url }
     end
 
+    def metrics_token
+      YAML.safe_load(IO.read('config/secrets.yml'))['bot_metrics_token']
+    end
+
     def logger
-      Logger.new(STDOUT, Logger::DEBUG)
+      Logger.new('log/bot.log', 7, 1_024_000)
     end
   end
 end

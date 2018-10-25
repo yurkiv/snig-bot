@@ -2,4 +2,4 @@ version: '3'
 services:
   bot:
     build: .
-    command: ruby snig_bot.rb
+    command: bin/bot
