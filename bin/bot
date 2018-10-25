@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+require 'telegram/bot'
+require 'yaml'
+require 'pry'
+require 'open-uri'
+
+require './lib/message_responder'
+require './lib/app_configurator'
+require './lib/metrics'
+
+token = AppConfigurator.token
+logger = AppConfigurator.logger
+AppConfigurator.raven
+
+logger.debug 'Starting telegram bot'
+
+begin
+  Telegram::Bot::Client.run(token) do |bot|
+    bot.listen do |message|
+      options = { bot: bot, message: message }
+
+      logger.info message
+      Metrics.send(message)
+      MessageResponder.new(options).respond
+    end
+  end
+rescue StandardError => e
+  Raven.capture_exception(e)
+  logger.error e
+  logger.error e.backtrace
+  retry
+end

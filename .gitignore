@@ -1,15 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### Rails template
-*.rbc
-capybara-*.html
-.rspec
 /log
 /tmp
-/db/*.sqlite3
-/db/*.sqlite3-journal
-/public/system
-/coverage/
-/spec/tmp
 **.orig
 rerun.txt
 pickle-email-*.html
@@ -46,5 +38,4 @@ bower.json
 .byebug_history
 
 /.idea/
-/app.yaml
-/bot.log
+/config/secrets.yml
