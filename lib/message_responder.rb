@@ -1,5 +1,6 @@
 require './lib/message_sender'
 require './lib/providers/snig_info'
+require './lib/providers/bukovel_queue_control'
 
 # Class for input messages
 class MessageResponder
@@ -26,34 +27,21 @@ class MessageResponder
       resorts_list
     else
       check_resort
-      # answer_with_message 'Unknown command, use /help for information'
     end
-  end
-
-  def resorts_list
-    resorts_list = snig_resorts.map { |resort| resort[:resort] }
-    resorts_list = resorts_list.insert(2, 'bukovel queue control')
-    answer_with_keyboard('Choose resort:', resorts_list)
   end
 
   private
 
-  def help_message
-    answer_with_message "/status <repository-name> - Update the status of repository and show it\n" \
-           "/last_build <repository-name> - Show the status of the <repository-name>" \
-             " last build\n" \
-           "/last_builds - Show the status of last builds of all my repositories\n" \
-           "/my_repos - Show the list of my repositories\n" \
-           "/help - Show this message\n"
-  end
-
-  def snig_resorts
-    Providers::SnigInfo.resorts
+  def resorts_list
+    resorts_list = snig_resorts.map { |resort| resort[:resort] }
+    resorts_list = resorts_list.insert(2, Providers::BukovelQueueControl::NAME)
+    answer('Choose resort:', answers: resorts_list)
   end
 
   def check_resort
     snig_resort = snig_resorts.find { |r| r[:resort] == message.text }
     snig_resort_answer(snig_resort) if snig_resort
+    bukovel_queue_control_answer if message.text == Providers::BukovelQueueControl::NAME
   end
 
   def snig_resort_answer(resort)
@@ -62,22 +50,25 @@ class MessageResponder
       active_cams.each do |cam|
         photo = Providers::SnigInfo.camera_photo(cam[:id])
         text = "#{cam[:title]}: #{Providers::SnigInfo.camera_link(cam[:id])}}"
-        answer_with_photo(text, photo)
+        answer(text, photo: photo)
       end
     else
-      answer_with_message('There are no active cams :(')
+      answer('There are no active cams :(')
     end
   end
 
-  def answer_with_message(text)
-    MessageSender.new(bot: bot, chat: message.chat, text: text).send
+  def bukovel_queue_control_answer
+    Providers::BukovelQueueControl::CAMS.each do |cam|
+      photo = Providers::BukovelQueueControl.camera_photo(cam)
+      answer("Bukovel #{cam}", photo: photo)
+    end
   end
 
-  def answer_with_keyboard(text, answers)
-    MessageSender.new(bot: bot, chat: message.chat, text: text, answers: answers).send
+  def snig_resorts
+    @snig_resorts ||= Providers::SnigInfo.resorts
   end
 
-  def answer_with_photo(text, photo)
-    MessageSender.new(bot: bot, chat: message.chat, text: text, photo: photo).send
+  def answer(text, options = {})
+    MessageSender.new(bot: bot, chat: message.chat, text: text, answers: options[:answers], photo: options[:photo]).send
   end
 end
