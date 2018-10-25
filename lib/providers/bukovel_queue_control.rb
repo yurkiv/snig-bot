@@ -1,5 +1,3 @@
-require 'api_cache'
-
 module Providers
   class BukovelQueueControl
     NAME = 'Bukovel queue control'.freeze
