@@ -1,4 +1,4 @@
-require 'api_cache'
+require 'http'
 
 module Providers
   class SnigInfo
@@ -6,7 +6,7 @@ module Providers
 
     class << self
       def resorts
-        response = APICache.get(URL, cache: 600)
+        response = HTTP.get(URL).body
         JSON.parse(response, symbolize_names: true)
       end
 
