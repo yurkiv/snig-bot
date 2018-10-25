@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.5.0'
+
 gem 'http', '~> 4.0'
 gem 'pry', '~> 0.11.3'
 gem 'rubocop', '~> 0.59.2'
