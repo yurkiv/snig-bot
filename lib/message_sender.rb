@@ -15,7 +15,7 @@ class MessageSender
     @chat = options[:chat]
     @answers = options[:answers]
     @photo = options[:photo]
-    @logger = AppConfigurator.get_logger
+    @logger = AppConfigurator.logger
   end
 
   def send

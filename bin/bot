@@ -8,14 +8,14 @@ require 'open-uri'
 require './lib/message_responder'
 require './lib/app_configurator'
 
-token = AppConfigurator.get_token
-logger = AppConfigurator.get_logger
+token = AppConfigurator.token
+logger = AppConfigurator.logger
 
 logger.debug 'Starting telegram bot'
 
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
-    options = {bot: bot, message: message}
+    options = { bot: bot, message: message }
 
     logger.debug "@#{message.from.username}: #{message.text}"
     MessageResponder.new(options).respond

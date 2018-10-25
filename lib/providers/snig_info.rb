@@ -2,7 +2,7 @@ require 'api_cache'
 
 module Providers
   class SnigInfo
-    URL = 'https://snig.info/api/snigbot/telegram.json'
+    URL = 'https://snig.info/api/snigbot/telegram.json'.freeze
 
     class << self
       def resorts
