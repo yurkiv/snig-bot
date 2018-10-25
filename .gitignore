@@ -46,5 +46,5 @@ bower.json
 .byebug_history
 
 /.idea/
-/app.yaml
 /bot.log
+/config/secrets.yml
