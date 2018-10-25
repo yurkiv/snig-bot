@@ -2,6 +2,8 @@
 
 require 'telegram/bot'
 require 'yaml'
+require 'pry'
+require 'open-uri'
 
 require './lib/message_responder'
 require './lib/app_configurator'
