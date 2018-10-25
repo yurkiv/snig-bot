@@ -10,14 +10,22 @@ require './lib/app_configurator'
 
 token = AppConfigurator.token
 logger = AppConfigurator.logger
+AppConfigurator.raven
 
 logger.debug 'Starting telegram bot'
 
-Telegram::Bot::Client.run(token) do |bot|
-  bot.listen do |message|
-    options = { bot: bot, message: message }
+begin
+  Telegram::Bot::Client.run(token) do |bot|
+    bot.listen do |message|
+      options = { bot: bot, message: message }
 
-    logger.debug "@#{message.from.username}: #{message.text}"
-    MessageResponder.new(options).respond
+      logger.debug "@#{message.from.username}: #{message.text}"
+      MessageResponder.new(options).respond
+    end
   end
+rescue StandardError => e
+  Raven.capture_exception(e)
+  bot.logger.error e
+  logger.error e.backtrace
+  retry
 end

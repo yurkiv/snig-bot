@@ -8,7 +8,6 @@ class MessageResponder
   attr_reader :bot
   attr_reader :user
   attr_reader :chat_id
-  attr_reader :repository_name
 
   def initialize(options)
     @bot = options[:bot]
@@ -16,7 +15,6 @@ class MessageResponder
     @message_text = options[:message].text
     @user = options[:user]
     @chat_id = options[:message_chat_id]
-    @repository_name = options[:repository_name]
   end
 
   def respond
