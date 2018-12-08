@@ -59,6 +59,7 @@ class MessageResponder
   def bukovel_queue_control_answer
     Providers::BukovelQueueControl::CAMS.each do |cam|
       photo = Providers::BukovelQueueControl.camera_photo(cam)
+      next unless photo.io.is_a?(Tempfile)
       answer("Bukovel #{cam}", photo: photo)
     end
   end
