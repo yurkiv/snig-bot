@@ -32,7 +32,7 @@ class MessageResponder
 
   def resorts_list
     resorts_list = snig_resorts.map { |resort| resort[:resort].capitalize }
-    resorts_list = resorts_list.insert(2, Providers::BukovelQueueControl::NAME)
+    # resorts_list = resorts_list.insert(2, Providers::BukovelQueueControl::NAME)
     answer('Choose resort:', answers: resorts_list)
   end
 
@@ -48,7 +48,7 @@ class MessageResponder
     if active_cams.any?
       active_cams.each do |cam|
         photo = Providers::SnigInfo.camera_photo(cam[:id])
-        text = "#{cam[:title]}: #{Providers::SnigInfo.camera_link(cam[:id])}}"
+        text = "#{cam[:title]}: #{Providers::SnigInfo.camera_link(cam[:id])}"
         answer(text, photo: photo)
       end
     else
