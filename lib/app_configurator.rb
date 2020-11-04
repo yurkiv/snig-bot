@@ -19,11 +19,7 @@ class AppConfigurator
     end
 
     def logger
-      log_file_name = 'log/bot.log'
-      unless File.exist?(File.dirname(log_file_name))
-        FileUtils.mkdir_p(File.dirname(log_file_name))
-      end
-      Logger.new(log_file_name, 7, 1_024_000)
+      Logger.new(STDOUT)
     end
   end
 end
