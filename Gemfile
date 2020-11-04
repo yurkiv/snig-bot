@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.5.0'
+ruby '2.5.5'
 
 gem 'http', '~> 4.0'
 gem 'pry', '~> 0.11.3'

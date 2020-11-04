@@ -15,19 +15,22 @@ AppConfigurator.raven
 
 logger.debug 'Starting telegram bot'
 
-begin
-  Telegram::Bot::Client.run(token) do |bot|
-    bot.listen do |message|
-      options = { bot: bot, message: message }
+Telegram::Bot::Client.run(token) do |bot|
+  bot.api.get_updates(offset: -1)
+  bot.listen do |message|
+    options = { bot: bot, message: message }
 
-      logger.info message
-      Metrics.send(message)
+    logger.info message
+    Metrics.send(message)
+
+    begin
       MessageResponder.new(options).respond
+    rescue StandardError => e
+      Raven.capture_exception(e)
+      logger.error e
+      logger.error e.backtrace
+      next
     end
   end
-rescue StandardError => e
-  Raven.capture_exception(e)
-  logger.error e
-  logger.error e.backtrace
-  retry
 end
+

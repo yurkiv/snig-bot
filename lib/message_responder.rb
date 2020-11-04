@@ -38,9 +38,11 @@ class MessageResponder
 
   def check_resort
     snig_resort = snig_resorts.find { |r| r[:resort].capitalize == message.text }
-    snig_resort_answer(snig_resort) if snig_resort
+    if snig_resort
+      snig_resort_answer(snig_resort)
+      answer('/list')
+    end
     # bukovel_queue_control_answer if message.text == Providers::BukovelQueueControl::NAME
-    answer('/list')
   end
 
   def snig_resort_answer(resort)
@@ -65,7 +67,7 @@ class MessageResponder
   end
 
   def snig_resorts
-    @snig_resorts ||= Providers::SnigInfo.resorts
+    @snig_resorts ||= Providers::SnigInfo.resorts[:resorts]
   end
 
   def answer(text, options = {})
